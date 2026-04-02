@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luce HOMEGNON | Écrivaine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== DESIGN (identique à la version précédente) ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a1f2e;
+            color: #fff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(145deg, #a0d2ff 0%, #0a192f 80%, #030c18 100%);
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 3s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1);}
+            100% { opacity: 1; transform: scale(1.2);}
+        }
+        .deco-sun {
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffdd88, #ffaa33);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255,200,100,0.5);
+            z-index: -1;
+            opacity: 0.7;
+        }
+        .deco-moon {
+            position: fixed;
+            top: 15%;
+            left: 5%;
+            width: 60px;
+            height: 60px;
+            background: #f0f0e0;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255,255,200,0.6);
+            z-index: -1;
+        }
+        .deco-moon::after {
+            content: '';
+            position: absolute;
+            background: #0a192f;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            top: 20px;
+            left: 15px;
+            box-shadow: 8px 8px 0 #0a192f, -4px 4px 0 #0a192f;
+        }
+        .tree {
+            position: fixed;
+            bottom: 0;
+            width: 40px;
+            height: 80px;
+            background: #2d4a2c;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            z-index: -1;
+        }
+        .tree1 { left: 5%; width: 50px; height: 100px; }
+        .tree2 { left: 15%; width: 35px; height: 70px; background: #3b5e3a; }
+        .tree3 { right: 12%; width: 60px; height: 120px; }
+        .tree4 { right: 25%; width: 40px; height: 85px; background: #2e5c2c; }
+        .child {
+            position: fixed;
+            bottom: 0;
+            width: 30px;
+            height: 50px;
+            background: #4a2a1a;
+            border-radius: 20px 20px 0 0;
+            z-index: -1;
+        }
+        .child1 { left: 25%; bottom: 0; width: 20px; height: 45px; background: #5d3a1e; }
+        .child2 { left: 28%; bottom: 0; width: 22px; height: 48px; background: #6b4c2c; }
+        .child3 { right: 35%; bottom: 0; width: 18px; height: 42px; background: #4f321a; }
+        .child1::after, .child2::after, .child3::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: #d9b382;
+            border-radius: 50%;
+        }
+        .child2::after { left: 3px; width: 18px; height: 18px; }
+        .child3::after { left: 1px; width: 14px; height: 14px; }
+        header {
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(100,255,218,0.3);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            flex-wrap: wrap;
+        }
+        .logo {
+            background: linear-gradient(135deg, #e0f0ff, #64ffda);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            color: #64ffda;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            background: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(100,255,218,0.5);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #a0d2ff, #64ffda);
+            margin: 0.8rem auto 0;
+            border-radius: 2px;
+        }
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: transparent;
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero .highlight { color: #64ffda; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin-bottom: 2rem; }
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .btn {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid #64ffda;
+            color: #64ffda;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+        }
+        .btn-primary { background: #64ffda; color: #0a192f; }
+        .btn-primary:hover { background: transparent; color: #64ffda; transform: scale(1.05); }
+        .btn-outline:hover { background: #64ffda; color: #0a192f; }
+        .about-content { display: flex; gap: 3rem; align-items: center; flex-wrap: wrap; }
+        .about-text { flex: 2; }
+        .about-photo { flex: 1; text-align: center; }
+        .photo-placeholder {
+            background: linear-gradient(135deg, #a0d2ff, #64ffda);
+            width: 100%;
+            max-width: 280px;
+            height: 280px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a192f;
+            font-size: 5rem;
+            margin: 0 auto;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid rgba(100,255,218,0.4);
+            cursor: pointer;
+        }
+        .project-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.2); }
+        .project-img {
+            width: 100%;
+            height: 180px;
+            background: rgba(10,25,47,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-img i {
+            font-size: 3rem;
+            color: #64ffda;
+        }
+        .project-info { padding: 1.5rem; }
+        .project-info h3 { margin-bottom: 0.5rem; color: #fff; }
+        .project-info p { font-size: 0.9rem; color: #e0e0e0; margin-top: 0.5rem; }
+        .prix-info { font-size: 0.8rem; color: #64ffda; margin-top: 0.8rem; font-weight: bold; }
+        .btn-lire {
+            display: inline-block;
+            margin-top: 1rem;
+            background: #64ffda;
+            color: #0a192f;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn-lire:hover { background: transparent; color: #64ffda; border: 1px solid #64ffda; }
+        .skills-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+        .skill-item {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            padding: 1.5rem;
+            border-radius: 40px;
+            text-align: center;
+            width: 140px;
+            transition: all 0.3s;
+            border: 1px solid rgba(100,255,218,0.4);
+        }
+        .skill-item i { font-size: 3rem; color: #64ffda; margin-bottom: 0.5rem; }
+        .skill-item span { display: block; font-weight: 500; color: white; }
+        .skill-item:hover { transform: scale(1.05); background: rgba(100,255,218,0.2); }
+        .contact-wrapper { display: flex; flex-wrap: wrap; gap: 3rem; }
+        .contact-info, .contact-form { flex: 1; }
+        .contact-details { list-style: none; margin: 1.5rem 0; }
+        .contact-details li { margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; color: white; }
+        .contact-details i { width: 30px; color: #64ffda; }
+        .social-links { display: flex; gap: 1.5rem; margin-top: 2rem; }
+        .social-links a { color: white; font-size: 2rem; transition: color 0.3s; }
+        .social-links a:hover { color: #64ffda; }
+        .form-group { margin-bottom: 1.2rem; }
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(100,255,218,0.5);
+            border-radius: 16px;
+            font-family: inherit;
+            color: white;
+        }
+        input:focus, textarea:focus { outline: none; border-color: #64ffda; box-shadow: 0 0 0 3px rgba(100,255,218,0.2); }
+        button {
+            background: #64ffda;
+            color: #0a192f;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: transparent; color: #64ffda; border: 2px solid #64ffda; }
+        footer { text-align: center; padding: 2rem; background: rgba(10,25,47,0.8); color: #a0d2ff; font-size: 0.9rem; }
+        .message-payant {
+            background: rgba(100,255,218,0.2);
+            border-left: 4px solid #64ffda;
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+        .admin-panel { background: rgba(10,25,47,0.95); padding: 2rem; border-radius: 32px; margin-top: 2rem; }
+        .admin-panel h3 { color: #64ffda; margin-bottom: 1rem; }
+        .admin-form { margin-bottom: 2rem; }
+        .chapitre-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .chapitre-titre {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #64ffda;
+        }
+        .chapitre-contenu {
+            white-space: pre-wrap;
+        }
+        .story-list, .comments-list { margin-top: 2rem; }
+        .story-item, .comment-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .story-actions button, .comment-actions button { margin-left: 0.5rem; background: #64ffda; color: #0a192f; padding: 0.3rem 0.8rem; font-size: 0.8rem; }
+        .comments-section {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(100,255,218,0.3);
+            padding-top: 1rem;
+        }
+        .comments-section h4 { color: #64ffda; margin-bottom: 1rem; }
+        .comment {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .comment-author { font-weight: bold; color: #64ffda; }
+        .comment-text { margin-top: 0.2rem; }
+        .comment-reply {
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid #64ffda;
+            font-style: italic;
+            color: #ccc;
+        }
+        .add-comment textarea { width: 100%; margin-top: 0.5rem; }
+        .notification-banner {
+            background: #64ffda;
+            color: #0a192f;
+            padding: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .login-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(100,255,218,0.8);
+            color: #0a192f;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .login-icon:hover { background: #64ffda; transform: scale(1.1); }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; width: 100%; flex-direction: column; align-items: center; gap: 1rem; padding: 1rem 0; }
+            .nav-links.active { display: flex; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2rem; }
+            section { margin: 1rem; padding: 2rem 1rem; }
+            .deco-sun, .deco-moon { width: 40px; height: 40px; }
+            .tree { transform: scale(0.7); }
+            .child { transform: scale(0.7); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars-bg"></div>
+    <div class="stars" id="stars"></div>
+    <div class="deco-sun"></div>
+    <div class="deco-moon"></div>
+    <div class="tree tree1"></div>
+    <div class="tree tree2"></div>
+    <div class="tree tree3"></div>
+    <div class="tree tree4"></div>
+    <div class="child child1"></div>
+    <div class="child child2"></div>
+    <div class="child child3"></div>
+
+    <div id="notification-area"></div>
+    <div id="login-icon" class="login-icon" style="display: none;" title="Connexion admin"><i class="fas fa-lock"></i></div>
+
+    <header>
+        <nav>
+            <div class="logo" onclick="showHome()">✧ Luce écrit ✧</div>
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="nav-links">
+                <li><a onclick="showHome()">Accueil</a></li>
+                <li><a onclick="showAbout()">À propos</a></li>
+                <li><a onclick="showStories()">Histoires</a></li>
+                <li><a onclick="showUnivers()">Univers</a></li>
+                <li><a onclick="showContact()">Contact</a></li>
+                <li id="admin-link" style="display: none;"><a onclick="showAdminPanel()">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="app"></main>
+    <footer><p>© 2025 Luce HOMEGNON - Tous droits réservés.</p></footer>
+
+    <script>
+        // ========== STOCKAGE ==========
+        let stories = [];
+        let lastUpdate = localStorage.getItem('luce_lastUpdate') || 0;
+        let visitorLastVisit = localStorage.getItem('luce_visitorLastVisit') || 0;
+        let adminLoggedIn = false;
+
+        // Informations de l'admin (modifiables)
+        let adminNom = localStorage.getItem('adminNom') || "HOMEGNON";
+        let adminPrenom = localStorage.getItem('adminPrenom') || "Luce";
+        let adminEmail = localStorage.getItem('adminEmail') || "lucehomegnon@gmail.com";
+        let adminPassword = localStorage.getItem('adminPassword') || "luce123";
+        let whatsappPro = localStorage.getItem('whatsappPro') || "2290155204040";
+
+        function loadStories() {
+            const stored = localStorage.getItem('luce_stories');
+            if(stored) {
+                stories = JSON.parse(stored);
+            } else {
+                stories = [];
+                saveStories();
+            }
+        }
+        function saveStories() {
+            localStorage.setItem('luce_stories', JSON.stringify(stories));
+            lastUpdate = Date.now();
+            localStorage.setItem('luce_lastUpdate', lastUpdate);
+        }
+
+        // ========== VISIBILITÉ DU CADENAS (seulement si ?admin=true dans l'URL ou si déjà connecté) ==========
+        function checkAdminVisibility() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if(urlParams.has('admin') && urlParams.get('admin') === 'true') {
+                document.getElementById('login-icon').style.display = 'flex';
+            } else if(adminLoggedIn) {
+                document.getElementById('login-icon').style.display = 'flex';
+            } else {
+                document.getElementById('login-icon').style.display = 'none';
+            }
+        }
+
+        // ========== NOTIFICATION ==========
+        function checkForUpdates() {
+            const storedLastUpdate = localStorage.getItem('luce_lastUpdate');
+            if(storedLastUpdate && visitorLastVisit < storedLastUpdate) {
+                const notificationDiv = document.getElementById('notification-area');
+                notificationDiv.innerHTML = `<div class="notification-banner" onclick="this.remove()">
+                    ✨ Nouvelles histoires ou nouveaux chapitres ont été ajoutés ! ✨
+                </div>`;
+            }
+            localStorage.setItem('luce_visitorLastVisit', Date.now());
+            visitorLastVisit = Date.now();
+        }
+
+        // ========== LOGIQUE DE MONÉTISATION ==========
+        function getPaymentRule(story) {
+            const sorted = [...stories].sort((a,b) => a.dateAjout - b.dateAjout);
+            const idx = sorted.findIndex(s => s.id === story.id);
+            if(idx < 3) return { type: 'free', message: 'Les 3 premières histoires sont gratuites' };
+            const seuilGratuit = story.seuilGratuit || 3;
+            const limitePayant = story.limitePayant || 12;
+            const prix = story.prix || 500;
+            if(story.chapitres.length > limitePayant) {
+                return { type: 'paid', freeChapters: seuilGratuit, pricePerChapter: prix };
+            } else {
+                return { type: 'free', message: 'Histoire gratuite' };
+            }
+        }
+
+        // ========== COMMENTAIRES ==========
+        function loadComments(storyId) {
+            const key = `comments_${storyId}`;
+            const stored = localStorage.getItem(key);
+            return stored ? JSON.parse(stored) : [];
+        }
+        function saveComments(storyId, comments) {
+            const key = `comments_${storyId}`;
+            localStorage.setItem(key, JSON.stringify(comments));
+        }
+        function addComment(storyId, author, text) {
+            const comments = loadComments(storyId);
+            comments.push({ id: Date.now(), author, text, date: new Date().toLocaleString(), replies: [] });
+            saveComments(storyId, comments);
+            return comments;
+        }
+        function addReply(storyId, commentId, replyText) {
+            const comments = loadComments(storyId);
+            const comment = comments.find(c => c.id === commentId);
+            if(comment) {
+                if(!comment.replies) comment.replies = [];
+                comment.replies.push({ author: `${adminPrenom} ${adminNom}`, text: replyText, date: new Date().toLocaleString() });
+                saveComments(storyId, comments);
+            }
+            return comments;
+        }
+
+        // ========== LECTURE ==========
+        let currentStory = null, currentChapter = 1, paymentGranted = false;
+        function readStory(id) {
+            currentStory = stories.find(s => s.id === id);
+            if(!currentStory) return;
+            currentChapter = 1;
+            paymentGranted = false;
+            const chapters = currentStory.chapitres;
+            const totalChapters = chapters.length;
+            const rule = getPaymentRule(currentStory);
+            function render() {
+                const chapter = chapters[currentChapter-1];
+                let chapterContent = chapter ? chapter.contenu : '';
+                let showPayment = false, paymentHtml = '', specialMsg = '';
+                if(rule.type === 'paid') {
+                    if(currentChapter > rule.freeChapters && !paymentGranted) {
+                        showPayment = true;
+                        paymentHtml = `<div class="message-payant">
+                            <i class="fas fa-lock"></i> Ce chapitre est payant (${rule.pricePerChapter} FCFA). 
+                            <br>Veuillez envoyer l'argent via <strong>Moov Money</strong> au numéro <strong>${whatsappPro}</strong> (WhatsApp professionnel).
+                            <br>Après paiement, cliquez sur le bouton ci-dessous pour confirmer.
+                            <br><button class="btn" onclick="requestPayment()">J'ai payé, débloquer le chapitre</button>
+                        </div>`;
+                    } else if(currentChapter > rule.freeChapters && paymentGranted) {
+                        paymentHtml = `<div class="message-payant">Merci beaucoup. Que Dieu vous bénisse !</div>`;
+                    }
+                }
+                if(currentChapter > 1 && !showPayment) {
+                    specialMsg = `<div class="message-payant"><i class="fas fa-heart"></i> Vous êtes une personne spéciale. La vie a besoin de quelqu’un comme vous. Que Dieu vous bénisse !</div>`;
+                }
+
+                const comments = loadComments(currentStory.id);
+                let commentsHtml = '<div class="comments-section"><h4>Commentaires</h4>';
+                if(comments.length === 0) commentsHtml += '<p>Aucun commentaire pour le moment. Soyez le premier à réagir !</p>';
+                else {
+                    comments.forEach(c => {
+                        commentsHtml += `<div class="comment">
+                            <span class="comment-author">${escapeHtml(c.author)}</span> <span style="font-size:0.8rem;">(${c.date})</span>
+                            <div class="comment-text">${escapeHtml(c.text)}</div>`;
+                        if(c.replies && c.replies.length) {
+                            c.replies.forEach(r => {
+                                commentsHtml += `<div class="comment-reply"><strong>${escapeHtml(r.author)}</strong> (${r.date}) : ${escapeHtml(r.text)}</div>`;
+                            });
+                        }
+                        commentsHtml += `</div>`;
+                    });
+                }
+                commentsHtml += `<div class="add-comment"><textarea id="newCommentText" placeholder="Votre commentaire..." rows="2"></textarea>
+                                 <button onclick="postComment(${currentStory.id})">Envoyer un commentaire</button></div></div>`;
+                const html = `
+                    <section style="max-width:800px; margin:0 auto;">
+                        <div style="background:rgba(10,25,47,0.8); border-radius:32px; padding:2rem;">
+                            <h1 style="color:#64ffda;">${escapeHtml(currentStory.titre)}</h1>
+                            <div style="margin:2rem 0;">
+                                <h3 style="color:#64ffda;">${escapeHtml(chapter.titre)}</h3>
+                                <div style="margin-top:1rem;">${chapterContent.replace(/\n/g, '<br>')}</div>
+                            </div>
+                            ${specialMsg}
+                            ${paymentHtml}
+                            <div style="display:flex; justify-content:space-between; margin-top:2rem;">
+                                ${currentChapter>1 ? `<button class="btn" onclick="changeChapter(${currentChapter-1})">◀ Chapitre précédent</button>` : '<span></span>'}
+                                ${currentChapter<totalChapters && !showPayment ? `<button class="btn" onclick="changeChapter(${currentChapter+1})">Chapitre suivant ▶</button>` : ''}
+                            </div>
+                            ${commentsHtml}
+                            <button class="btn-outline" style="margin-top:2rem;" onclick="showStories()">← Retour aux histoires</button>
+                        </div>
+                    </section>
+                `;
+                document.getElementById('app').innerHTML = html;
+            }
+            window.changeChapter = (nc) => { if(nc>=1 && nc<=totalChapters) { currentChapter=nc; render(); } };
+            window.requestPayment = () => {
+                if(confirm("Confirmez-vous avoir envoyé le paiement de "+rule.pricePerChapter+" FCFA sur le numéro "+whatsappPro+" via Moov Money ?")) {
+                    paymentGranted = true;
+                    render();
+                }
+            };
+            render();
+        }
+        function postComment(storyId) {
+            const textarea = document.getElementById('newCommentText');
+            const text = textarea.value.trim();
+            if(!text) return;
+            const author = "Lecteur";
+            addComment(storyId, author, text);
+            readStory(storyId);
+        }
+
+        // ========== AFFICHAGE DES HISTOIRES ==========
+        function showStories() {
+            if(!stories.length) {
+                document.getElementById('app').innerHTML = `
+                    <section>
+                        <h2 class="section-title">Mes histoires</h2>
+                        <div class="message-payant">
+                            <i class="fas fa-info-circle"></i> 
+                            <strong>Règles de lecture :</strong><br>
+                            • Les 3 premières histoires ajoutées sont entièrement gratuites.<br>
+                            • Pour les suivantes : si l’histoire dépasse 12 chapitres, les 3 premiers chapitres sont gratuits, puis chaque chapitre suivant est payant (500 FCFA).<br>
+                            • Les histoires de 12 chapitres au maximum restent gratuites.<br>
+                            <strong>Paiement sécurisé :</strong> Envoyez l'argent via <strong>Moov Money</strong> au numéro <strong>${whatsappPro}</strong> (WhatsApp professionnel).
+                        </div>
+                        <p style="text-align:center; margin-top:2rem;">Aucune histoire pour le moment. Revenez bientôt !</p>
+                    </section>
+                `;
+                return;
+            }
+            const sorted = [...stories].sort((a,b) => a.dateAjout - b.dateAjout);
+            let html = '';
+            stories.forEach(s => {
+                const idx = sorted.findIndex(st => st.id === s.id);
+                const isFirstThree = idx < 3;
+                let infoHtml = '';
+                if(!isFirstThree) {
+                    const rule = getPaymentRule(s);
+                    if(rule.type === 'free') {
+                        infoHtml = `<p class="prix-info">🎁 Gratuit</p>`;
+                    } else {
+                        infoHtml = `<p class="prix-info">💰 Payant (${rule.pricePerChapter} FCFA/chapitre après le ${rule.freeChapters}e)</p>`;
+                    }
+                    infoHtml = `<p>📖 ${s.chapitres.length} chapitres</p>${infoHtml}`;
+                } else {
+                    infoHtml = '';
+                }
+                const imgHtml = s.imageUrl ? `<img src="${escapeHtml(s.imageUrl)}" alt="${escapeHtml(s.titre)}">` : `<i class="fas fa-book-open"></i>`;
+                html += `
+                    <div class="project-card" onclick="readStory(${s.id})">
+                        <div class="project-img">
+                            ${imgHtml}
+                        </div>
+                        <div class="project-info">
+                            <h3>${escapeHtml(s.titre)}</h3>
+                            ${infoHtml}
+                            <button class="btn-lire" onclick="event.stopPropagation(); readStory(${s.id})">Lire →</button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('app').innerHTML = `
+                <section>
+                    <h2 class="section-title">Mes histoires</h2>
+                    <div class="message-payant">
+                        <i class="fas fa-info-circle"></i> 
+                        <strong>Règles de lecture :</strong><br>
+                        • Les 3 premières histoires ajoutées sont entièrement gratuites.<br>
+                        • Pour les suivantes : si l’histoire dépasse 12 chapitres, les 3 premiers chapitres sont gratuits, puis chaque chapitre suivant est payant (500 FCFA).<br>
+                        • Les histoires de 12 chapitres au maximum restent gratuites.<br>
+                        <strong>Paiement sécurisé :</strong> Envoyez l'argent via <strong>Moov Money</strong> au numéro <strong>${whatsappPro}</strong> (WhatsApp professionnel).
+                    </div>
+                    <div class="projects-grid">${html}</div>
+                    <p style="text-align:center; margin-top:2rem; font-style:italic;">✨ D’autres histoires sont en cours d’écriture. ✨</p>
+                </section>
+            `;
+        }
+
+        // ========== AUTRES PAGES ==========
+        function showHome() {
+            document.getElementById('app').innerHTML = `
+                <section class="hero">
+                    <h1>${adminPrenom} <span class="highlight">${adminNom}</span></h1>
+                    <p>Jeune écrivaine, je tisse des histoires où l’imaginaire rencontre l’émotion.</p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="showStories()">Découvrir mes écrits</button>
+                        <button class="btn btn-outline" onclick="showContact()">Échangeons</button>
+                    </div>
+                </section>
+            `;
+        }
+        function showAbout() {
+            document.getElementById('app').innerHTML = `
+                <section>
+                    <h2 class="section-title">À propos</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>Je m’appelle ${adminPrenom} ${adminNom}, et l’écriture est ma façon de donner vie aux mondes qui foisonnent dans ma tête. Depuis quelques années déjà, je noircis des carnets d’histoires, d’acrostiches, de poèmes et de personnages en quête d’aventure.</p>
+                            <p>Aujourd’hui, je souhaite partager ces univers avec les lecteurs. Entre roman contemporain, fantasy et récits intimes, j’aime explorer la sensibilité humaine sous toutes ses formes.</p>
+                            <p>📖 En cours d’écriture de mon premier roman, je suis également disponible pour des collaborations (scénarios, relecture, ateliers d’écriture).</p>
+                            <p>✍️ Les acrostiches sont payants : 500 FCFA par acrostiche.</p>
+                        </div>
+                        <div class="about-photo"><div class="photo-placeholder"><i class="fas fa-feather-alt"></i></div></div>
+                    </div>
+                </section>
+            `;
+        }
+        function showUnivers() {
+            document.getElementById('app').innerHTML = `
+                <section>
+                    <h2 class="section-title">Mon univers</h2>
+                    <div class="skills-container">
+                        <div class="skill-item"><i class="fas fa-feather-alt"></i><span>Écriture créative</span></div>
+                        <div class="skill-item"><i class="fas fa-book"></i><span>Nouvelles</span></div>
+                        <div class="skill-item"><i class="fas fa-pen-fancy"></i><span>Scénario</span></div>
+                        <div class="skill-item"><i class="fas fa-theater-masks"></i><span>Théâtre</span></div>
+                        <div class="skill-item"><i class="fas fa-comments"></i><span>Ateliers d’écriture</span></div>
+                        <div class="skill-item"><i class="fas fa-globe"></i><span>Blog littéraire</span></div>
+                    </div>
+                </section>
+            `;
+        }
+        function showContact() {
+            document.getElementById('app').innerHTML = `
+                <section>
+                    <h2 class="section-title">Contactez-moi</h2>
+                    <div class="contact-wrapper">
+                        <div class="contact-info">
+                            <h3>Parlons écriture</h3>
+                            <p>Vous êtes un éditeur, un festival, ou simplement un lecteur curieux ? Je serai ravie d’échanger avec vous.</p>
+                            <ul class="contact-details">
+                                <li><i class="fas fa-envelope"></i> ${adminEmail}</li>
+                                <li><i class="fas fa-phone-alt"></i> 01 55 20 40 40</li>
+                                <li><i class="fas fa-map-marker-alt"></i> Abomey-Calavi, Bénin</li>
+                            </ul>
+                            <div class="social-links">
+                                <a href="https://wa.me/${whatsappPro}" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <h3>Envoyez un message</h3>
+                            <form action="https://formspree.io/f/ton-identifiant" method="POST">
+                                <div class="form-group"><input type="text" name="name" placeholder="Votre nom" required></div>
+                                <div class="form-group"><input type="email" name="email" placeholder="Votre email" required></div>
+                                <div class="form-group"><textarea name="message" rows="4" placeholder="Votre message" required></textarea></div>
+                                <button type="submit">Envoyer <i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // ========== ADMINISTRATION ==========
+        function showAdminLogin() {
+            document.getElementById('app').innerHTML = `
+                <section>
+                    <h2 class="section-title">Connexion administrateur</h2>
+                    <div class="admin-panel">
+                        <div class="form-group">
+                            <label>Email :</label>
+                            <input type="email" id="admin-email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe :</label>
+                            <input type="password" id="admin-pwd" required>
+                        </div>
+                        <button onclick="loginAdmin()">Se connecter</button>
+                    </div>
+                </section>
+            `;
+        }
+        function loginAdmin() {
+            const email = document.getElementById('admin-email').value.trim();
+            const pwd = document.getElementById('admin-pwd').value;
+            if(email === adminEmail && pwd === adminPassword) {
+                adminLoggedIn = true;
+                document.getElementById('admin-link').style.display = 'list-item';
+                checkAdminVisibility();
+                showAdminPanel();
+            } else {
+                alert("Email ou mot de passe incorrect. Accès refusé.");
+            }
+        }
+
+        function showAdminPanel() {
+            if(!adminLoggedIn) {
+                showAdminLogin();
+                return;
+            }
+            let storiesList = '';
+            stories.forEach(s => {
+                storiesList += `
+                    <div class="story-item">
+                        <span><strong>${escapeHtml(s.titre)}</strong> (${s.chapitres.length} chapitres) - ajoutée le ${new Date(s.dateAjout).toLocaleDateString()}</span>
+                        <div class="story-actions">
+                            <button onclick="editStory(${s.id})">Modifier</button>
+                            <button onclick="deleteStory(${s.id})">Supprimer</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            let allCommentsHtml = '';
+            stories.forEach(s => {
+                const comments = loadComments(s.id);
+                if(comments.length) {
+                    allCommentsHtml += `<h4 style="margin-top:1rem;">${escapeHtml(s.titre)}</h4>`;
+                    comments.forEach(c => {
+                        allCommentsHtml += `
+                            <div class="comment-item">
+                                <div><strong>${escapeHtml(c.author)}</strong> (${c.date}) : ${escapeHtml(c.text)}</div>
+                                <div style="margin-top:0.5rem;">
+                                    <input type="text" id="reply-${c.id}" placeholder="Votre réponse..." style="width:70%;">
+                                    <button onclick="replyToComment(${s.id}, ${c.id})">Répondre</button>
+                                </div>
+                                ${c.replies && c.replies.length ? c.replies.map(r => `<div class="comment-reply"><strong>${escapeHtml(r.author)}</strong> (${r.date}) : ${escapeHtml(r.text)}</div>`).join('') : ''}
+                            </div>
+                        `;
+                    });
+                }
+            });
+            if(!allCommentsHtml) allCommentsHtml = '<p>Aucun commentaire pour le moment.</p>';
+
+            document.getElementById('app').innerHTML = `
+                <section>
+                    <h2 class="section-title">Administration</h2>
+                    <div class="admin-panel">
+                        <h3>👤 Mes informations</h3>
+                        <div class="form-group">
+                            <label>Nom :</label>
+                            <input type="text" id="admin-nom" value="${escapeHtml(adminNom)}">
+                        </div>
+                        <div class="form-group">
+                            <label>Prénom :</label>
+                            <input type="text" id="admin-prenom" value="${escapeHtml(adminPrenom)}">
+                        </div>
+                        <div class="form-group">
+                            <label>Email (connexion) :</label>
+                            <input type="email" id="admin-email-field" value="${escapeHtml(adminEmail)}">
+                        </div>
+                        <div class="form-group">
+                            <label>Nouveau mot de passe :</label>
+                            <input type="password" id="admin-password-field" placeholder="Laisser vide pour ne pas changer">
+                        </div>
+                        <button onclick="updateAdminInfo()">Enregistrer mes informations</button>
+
+                        <h3 style="margin-top:2rem;">⚙️ Paramètres généraux</h3>
+                        <div class="form-group">
+                            <label>Numéro WhatsApp professionnel (paiements) :</label>
+                            <input type="text" id="whatsapp-pro" value="${whatsappPro}" placeholder="229XXXXXXXXX">
+                            <button onclick="updateWhatsappPro()">Enregistrer</button>
+                        </div>
+
+                        <h3 style="margin-top:2rem;">➕ Ajouter une nouvelle histoire</h3>
+                        <button class="btn" onclick="showAddStoryForm()">Nouvelle histoire</button>
+
+                        <h3 style="margin-top:2rem;">📚 Histoires existantes</h3>
+                        <div class="story-list">${storiesList || 'Aucune histoire.'}</div>
+
+                        <h3 style="margin-top:2rem;">💬 Gérer les commentaires</h3>
+                        <div class="comments-list">${allCommentsHtml}</div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function updateAdminInfo() {
+            const newNom = document.getElementById('admin-nom').value.trim();
+            const newPrenom = document.getElementById('admin-prenom').value.trim();
+            const newEmail = document.getElementById('admin-email-field').value.trim();
+            const newPassword = document.getElementById('admin-password-field').value.trim();
+            if(newNom) adminNom = newNom;
+            if(newPrenom) adminPrenom = newPrenom;
+            if(newEmail) adminEmail = newEmail;
+            if(newPassword) adminPassword = newPassword;
+            localStorage.setItem('adminNom', adminNom);
+            localStorage.setItem('adminPrenom', adminPrenom);
+            localStorage.setItem('adminEmail', adminEmail);
+            localStorage.setItem('adminPassword', adminPassword);
+            alert("Informations mises à jour. La prochaine connexion utilisera ces nouvelles données.");
+            showAdminPanel();
+        }
+
+        function updateWhatsappPro() {
+            const newNum = document.getElementById('whatsapp-pro').value.trim();
+            if(newNum) {
+                whatsappPro = newNum;
+                localStorage.setItem('whatsappPro', whatsappPro);
+                alert("Numéro WhatsApp professionnel mis à jour.");
+            }
+        }
+
+        function showAddStoryForm() {
+            if(!adminLoggedIn) return;
+            document.getElementById('app').innerHTML = `
+                <section>
+                    <h2 class="section-title">Ajouter une histoire</h2>
+                    <div class="admin-panel">
+                        <form id="addStoryForm">
+                            <div class="form-group">
+                                <label>Titre de l'histoire :</label>
+                                <input type="text" id="storyTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label>URL de l'image (optionnelle) :</label>
+                                <input type="text" id="storyImage" placeholder="https://exemple.com/image.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre de chapitres gratuits (défaut 3) :</label>
+                                <input type="number" id="seuilGratuit" value="3" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Limite de chapitres pour déclencher le payant (défaut 12) :</label>
+                                <input type="number" id="limitePayant" value="12" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label>Prix par chapitre (FCFA) :</label>
+                                <input type="number" id="prix" value="500" min="100">
+                            </div>
+                            <div id="chapitresContainer">
+                                <div class="chapitre-item">
+                                    <div class="form-group">
+                                        <label>Titre du chapitre 1 :</label>
+                                        <input type="text" class="chapitre-titre-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contenu du chapitre 1 :</label>
+                                        <textarea class="chapitre-contenu-input" rows="5" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn" onclick="ajouterChapitre()">+ Ajouter un chapitre</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer l'histoire</button>
+                            <button type="button" class="btn" onclick="showAdminPanel()">Annuler</button>
+                        </form>
+                    </div>
+                </section>
+            `;
+            window.ajouterChapitre = function() {
+                const container = document.getElementById('chapitresContainer');
+                const index = container.children.length + 1;
+                const newDiv = document.createElement('div');
+                newDiv.className = 'chapitre-item';
+                newDiv.innerHTML = `
+                    <div class="form-group">
+                        <label>Titre du chapitre ${index} :</label>
+                        <input type="text" class="chapitre-titre-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contenu du chapitre ${index} :</label>
+                        <textarea class="chapitre-contenu-input" rows="5" required></textarea>
+                    </div>
+                    <button type="button" class="btn" style="background:#ff5555;" onclick="this.parentElement.remove()">Supprimer ce chapitre</button>
+                `;
+                container.appendChild(newDiv);
+            };
+            document.getElementById('addStoryForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const titre = document.getElementById('storyTitle').value.trim();
+                const imageUrl = document.getElementById('storyImage').value.trim();
+                const seuilGratuit = parseInt(document.getElementById('seuilGratuit').value) || 3;
+                const limitePayant = parseInt(document.getElementById('limitePayant').value) || 12;
+                const prix = parseInt(document.getElementById('prix').value) || 500;
+                const chapitreDivs = document.querySelectorAll('#chapitresContainer .chapitre-item');
+                const chapitres = [];
+                for(let div of chapitreDivs) {
+                    const titreChap = div.querySelector('.chapitre-titre-input').value.trim();
+                    const contenuChap = div.querySelector('.chapitre-contenu-input').value.trim();
+                    if(titreChap && contenuChap) {
+                        chapitres.push({ titre: titreChap, contenu: contenuChap });
+                    } else {
+                        alert("Chaque chapitre doit avoir un titre et un contenu.");
+                        return;
+                    }
+                }
+                if(!titre) { alert("Veuillez donner un titre à l'histoire."); return; }
+                if(chapitres.length === 0) { alert("Ajoutez au moins un chapitre."); return; }
+                const newId = Date.now();
+                stories.push({
+                    id: newId,
+                    titre: titre,
+                    imageUrl: imageUrl || null,
+                    chapitres: chapitres,
+                    dateAjout: Date.now(),
+                    seuilGratuit: seuilGratuit,
+                    limitePayant: limitePayant,
+                    prix: prix
+                });
+                saveStories();
+                showAdminPanel();
+            });
+        }
+
+        function editStory(id) {
+            if(!adminLoggedIn) return;
+            const story = stories.find(s => s.id === id);
+            if(!story) return;
+            let chapitresHtml = '';
+            story.chapitres.forEach((chap, idx) => {
+                chapitresHtml += `
+                    <div class="chapitre-item" data-idx="${idx}">
+                        <div class="form-group">
+                            <label>Titre du chapitre ${idx+1} :</label>
+                            <input type="text" class="chapitre-titre-input" value="${escapeHtml(chap.titre)}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Contenu du chapitre ${idx+1} :</label>
+                            <textarea class="chapitre-contenu-input" rows="5" required>${escapeHtml(chap.contenu)}</textarea>
+                        </div>
+                        <button type="button" class="btn" style="background:#ff5555;" onclick="this.parentElement.remove()">Supprimer ce chapitre</button>
+                    </div>
+                `;
+            });
+            document.getElementById('app').innerHTML = `
+                <section>
+                    <h2 class="section-title">Modifier : ${escapeHtml(story.titre)}</h2>
+                    <div class="admin-panel">
+                        <form id="editStoryForm">
+                            <div class="form-group">
+                                <label>Titre de l'histoire :</label>
+                                <input type="text" id="storyTitle" value="${escapeHtml(story.titre)}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>URL de l'image :</label>
+                                <input type="text" id="storyImage" value="${escapeHtml(story.imageUrl || '')}">
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre de chapitres gratuits :</label>
+                                <input type="number" id="seuilGratuit" value="${story.seuilGratuit || 3}" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Limite de chapitres pour payant :</label>
+                                <input type="number" id="limitePayant" value="${story.limitePayant || 12}" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label>Prix par chapitre (FCFA) :</label>
+                                <input type="number" id="prix" value="${story.prix || 500}" min="100">
+                            </div>
+                            <div id="chapitresContainer">
+                                ${chapitresHtml}
+                            </div>
+                            <button type="button" class="btn" onclick="ajouterChapitreEdit()">+ Ajouter un chapitre</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                            <button type="button" class="btn" onclick="showAdminPanel()">Annuler</button>
+                        </form>
+                    </div>
+                </section>
+            `;
+            window.ajouterChapitreEdit = function() {
+                const container = document.getElementById('chapitresContainer');
+                const index = container.children.length + 1;
+                const newDiv = document.createElement('div');
+                newDiv.className = 'chapitre-item';
+                newDiv.innerHTML = `
+                    <div class="form-group">
+                        <label>Titre du chapitre ${index} :</label>
+                        <input type="text" class="chapitre-titre-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contenu du chapitre ${index} :</label>
+                        <textarea class="chapitre-contenu-input" rows="5" required></textarea>
+                    </div>
+                    <button type="button" class="btn" style="background:#ff5555;" onclick="this.parentElement.remove()">Supprimer ce chapitre</button>
+                `;
+                container.appendChild(newDiv);
+            };
+            document.getElementById('editStoryForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newTitre = document.getElementById('storyTitle').value.trim();
+                const newImageUrl = document.getElementById('storyImage').value.trim();
+                const newSeuil = parseInt(document.getElementById('seuilGratuit').value) || 3;
+                const newLimite = parseInt(document.getElementById('limitePayant').value) || 12;
+                const newPrix = parseInt(document.getElementById('prix').value) || 500;
+                const chapitreDivs = document.querySelectorAll('#chapitresContainer .chapitre-item');
+                const newChapitres = [];
+                for(let div of chapitreDivs) {
+                    const titreChap = div.querySelector('.chapitre-titre-input').value.trim();
+                    const contenuChap = div.querySelector('.chapitre-contenu-input').value.trim();
+                    if(titreChap && contenuChap) {
+                        newChapitres.push({ titre: titreChap, contenu: contenuChap });
+                    } else {
+                        alert("Chaque chapitre doit avoir un titre et un contenu.");
+                        return;
+                    }
+                }
+                if(!newTitre) { alert("Veuillez donner un titre à l'histoire."); return; }
+                if(newChapitres.length === 0) { alert("Ajoutez au moins un chapitre."); return; }
+                story.titre = newTitre;
+                story.imageUrl = newImageUrl || null;
+                story.chapitres = newChapitres;
+                story.seuilGratuit = newSeuil;
+                story.limitePayant = newLimite;
+                story.prix = newPrix;
+                saveStories();
+                showAdminPanel();
+            });
+        }
+
+        function deleteStory(id) {
+            if(!adminLoggedIn) return;
+            if(confirm("Supprimer cette histoire ?")) {
+                stories = stories.filter(s => s.id !== id);
+                saveStories();
+                showAdminPanel();
+            }
+        }
+
+        function replyToComment(storyId, commentId) {
+            if(!adminLoggedIn) return;
+            const replyInput = document.getElementById(`reply-${commentId}`);
+            const replyText = replyInput.value.trim();
+            if(!replyText) return;
+            addReply(storyId, commentId, replyText);
+            showAdminPanel();
+        }
+
+        // ========== UTILITAIRES ==========
+        function escapeHtml(str) {
+            if(!str) return '';
+            return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+        }
+
+        // ========== INIT ==========
+        loadStories();
+        checkForUpdates();
+        showHome();
+        checkAdminVisibility();
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        mobileMenu.addEventListener('click', () => navLinks.classList.toggle('active'));
+        const loginIcon = document.getElementById('login-icon');
+        loginIcon.addEventListener('click', () => showAdminLogin());
+
+        function createStars() {
+            const container = document.getElementById('stars');
+            for(let i=0;i<200;i++) {
+                let s = document.createElement('div');
+                s.classList.add('star');
+                let sz = Math.random()*3+1;
+                s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${Math.random()*2+1}s`;
+                container.appendChild(s);
+            }
+        }
+        createStars();
+    </script>
+</body>
+</html>
